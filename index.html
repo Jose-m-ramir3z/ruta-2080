@@ -27,6 +27,7 @@
   --warn-bg:#fffbeb; --warn-ink:#92400e; --warn-edge:#fde68a;
   --neutral-bg:#eceef2; --neutral-ink:#363b45;
   --scrim:rgba(8,10,14,.45);
+  --zf:#2a5bd7; --zf-dark:#1b3fa0; --zf-soft:#e3ebff; --zf-face:#eef3ff; --zf-ink:#0e2a78; --zf-text:#1f4ac0;
   --radius-card:8px; --radius-control:6px; --radius-chip:4px;
   --gap:16px; --pad:20px; --control-h:36px;
 }
@@ -43,6 +44,7 @@
     --warn-bg:#2a2210; --warn-ink:#f0b45a; --warn-edge:#5c4a1c;
     --neutral-bg:#262626; --neutral-ink:#d4d4d4;
     --scrim:rgba(0,0,0,.6);
+    --zf:#4f7df0; --zf-dark:#2b4db8; --zf-soft:#18233f; --zf-face:#dfe8ff; --zf-ink:#0e1f5c; --zf-text:#8fb0ff;
     color-scheme:dark;
   }
 }
@@ -58,6 +60,7 @@
   --warn-bg:#2a2210; --warn-ink:#f0b45a; --warn-edge:#5c4a1c;
   --neutral-bg:#262626; --neutral-ink:#d4d4d4;
   --scrim:rgba(0,0,0,.6);
+  --zf:#4f7df0; --zf-dark:#2b4db8; --zf-soft:#18233f; --zf-face:#dfe8ff; --zf-ink:#0e1f5c; --zf-text:#8fb0ff;
   color-scheme:dark;
 }
 *{box-sizing:border-box}
@@ -466,6 +469,33 @@ details.ex-ok ul{margin:0;padding:0 14px 14px 32px;font-size:14px;color:var(--mu
   .kpi dd{font-size:22px}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* Zafiro */
+.zf{position:fixed;right:16px;bottom:calc(80px + env(safe-area-inset-bottom,0px));z-index:35;width:min(360px,calc(100vw - 32px));box-sizing:border-box;display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:start;padding:14px 8px 14px 14px;background:var(--surface);color:var(--text);border:1px solid var(--border);border-left:3px solid var(--zf);border-radius:var(--radius-card);box-shadow:0 12px 32px rgba(8,10,14,.18)}
+.zf[hidden],.zf-fab[hidden]{display:none}
+.zf.in{animation:zf-in .22s ease-out}
+@keyframes zf-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.zf-av{width:44px;height:44px;border-radius:50%;background:var(--zf-soft);display:grid;place-items:center;overflow:hidden}
+.zf-av svg{width:38px;height:38px}
+.zf-who{margin:0;font:600 12px/1.4 var(--font);letter-spacing:.02em;color:var(--zf-text)}
+.zf-msg{margin:2px 0 0;font:500 15px/1.45 var(--font);color:var(--text);min-height:1.45em}
+.zf-act{margin-top:10px}
+.zf-acts{display:flex;gap:16px;margin-top:10px}
+.zf-acts .tlink{font-size:13px;color:var(--muted)}
+.zf-set{margin-top:10px;display:grid;gap:6px}
+.zf-set label{font:500 12px/1.4 var(--font);color:var(--muted)}
+.zf-set select{height:34px;border:1px solid var(--control);border-radius:var(--radius-control);background:var(--surface);color:var(--text);font:500 13px var(--font);padding:0 8px;width:100%}
+.zf-x{width:32px;height:32px;border:0;background:none;color:var(--muted);font-size:22px;line-height:1;cursor:pointer;border-radius:var(--radius-control)}
+.zf-x:hover{background:var(--active);color:var(--text)}
+.zf-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:35;width:56px;height:56px;padding:6px;border-radius:50%;border:1px solid var(--border);background:var(--surface);box-shadow:0 6px 18px rgba(8,10,14,.16);cursor:pointer;display:grid;place-items:center}
+.zf-fab svg{width:40px;height:40px}
+.zf-fab:hover{border-color:var(--zf)}
+.zf button:focus-visible,.zf select:focus-visible,.zf-fab:focus-visible{outline:2px solid var(--zf);outline-offset:2px}
+.zf-eyes{transform-box:fill-box;transform-origin:center;animation:zf-blink 5.5s infinite}
+@keyframes zf-blink{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+.zf-ant{animation:zf-pulse 2.4s ease-in-out infinite}
+@keyframes zf-pulse{50%{opacity:.55}}
+@media (max-width:560px){.zf{right:12px;left:12px;width:auto;bottom:calc(78px + env(safe-area-inset-bottom,0px))}.zf-fab{right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));width:52px;height:52px}}
+@media print{.zf,.zf-fab{display:none}}
 </style>
 </head>
 <body>
@@ -635,6 +665,7 @@ details.ex-ok ul{margin:0;padding:0 14px 14px 32px;font-size:14px;color:var(--mu
         <li>Soporte técnico N1: la estructura de particiones UEFI/GPT, las fases del arranque y el límite de memoria confirmada (RAM más archivos de paginación) vienen de Microsoft Learn. <a href="https://learn.microsoft.com/windows-hardware/manufacture/desktop/configure-uefigpt-based-hard-drive-partitions" target="_blank" rel="noopener noreferrer">Particiones</a> · <a href="https://learn.microsoft.com/troubleshoot/windows-client/performance/windows-boot-issues-troubleshooting" target="_blank" rel="noopener noreferrer">Arranque</a> · <a href="https://learn.microsoft.com/troubleshoot/windows-client/performance/how-to-determine-the-appropriate-page-file-size-for-64-bit-versions-of-windows" target="_blank" rel="noopener noreferrer">Archivo de paginación</a>. Los límites de MBR (cuatro particiones primarias, 2 TB) son conocimiento general: esa página de Microsoft no los indica.</li>
         <li>Protocolos (Ciberseguridad): el catálogo sigue la estructura de los módulos Footprinting, Attacking Common Services y Network Enumeration with Nmap de HTB Academy, cuyos títulos de sección consulté el 25 de octubre de 2026. Los números de puerto son los habituales por defecto; un servicio puede usar otro. Las prácticas son solo en tu laboratorio o en entornos autorizados.</li>
         <li>Pista de shell (Infraestructura): los atajos de PowerShell (PSReadLine), SMB, OpenSSH, winget, remoting, políticas de ejecución, Windows Terminal y WSL vienen de Microsoft Learn; los atajos de bash y set, del manual de GNU Bash; ShellCheck, Pester y PSScriptAnalyzer, de sus páginas oficiales. Los consulté el 26 de octubre de 2026. Los atajos de PowerShell dependen del modo de edición (por defecto, el de Windows). Los comandos de Linux (grep, awk, tmux, smbclient, mount -t cifs) son de uso general y no los verifiqué contra un manual concreto. Practica solo en tu equipo o en uno autorizado.</li>
+        <li>Zafiro: las frases son mías y no citan a nadie. Dos tarjetas traen datos de estudios: formar un hábito tomó en promedio 66 días en una investigación de UCL con conductas simples, y perder un día no cambió el proceso de forma significativa (<a href="https://www.ucl.ac.uk/news/2009/aug/how-long-does-it-take-form-habit" target="_blank" rel="noopener noreferrer">fuente</a>); los planes «si pasa X, hago Y» mostraron un efecto medio-grande (d = 0,65) en 94 pruebas (<a href="https://kops.uni-konstanz.de/entities/publication/2e749bfb-8533-437c-8203-7e788c910c5f" target="_blank" rel="noopener noreferrer">Gollwitzer y Sheeran, 2006</a>). Zafiro no sustituye apoyo profesional si te sientes mal de forma sostenida.</li>
         <li>Método: los hallazgos de la sección Método vienen de los cuatro trabajos citados allí. Los intervalos de repaso, los bloques de 25 min, el límite de dos módulos y el orden en espiral de Soporte son reglas prácticas mías.</li>
         <li>Exámenes: las preguntas las redacté yo a partir del contenido de cada nivel; no vienen de un examen oficial ni de un banco de certificación. Aprobar con 7 de 10 es una regla práctica mía. Cada nivel tiene un banco de 12 a 21 preguntas y cada intento toma 10: si lo repites muchas veces, recordarás las respuestas más que el tema. Para algo que vayas a usar en el trabajo, confirma el dato en la documentación oficial.</li>
         <li>Las horas por nivel son estimaciones mías, no datos oficiales. Ajústalas con tu ritmo real después de dos quincenas.</li>
@@ -1719,7 +1750,7 @@ const MAIN=MODS.filter(m=>m.main), SIDE=MODS.filter(m=>!m.main);
 
 /* ---------- estado ---------- */
 function defaults(){
-  return {v:1,ts:0,st:{},at:{},rv:{},days:{},qz:{},rev:[],active:['ciber','ingles'],plan:{start:today(),tec:6,ing:3,ifw:'',ifd:''}};
+  return {v:1,ts:0,st:{},at:{},rv:{},days:{},qz:{},rev:[],active:['ciber','ingles'],plan:{start:today(),tec:6,ing:3,ifw:'',ifd:''},zf:{every:30,intro:false}};
 }
 function sanitize(o){
   const r=Object.assign(defaults(),(o&&typeof o==='object')?o:{});
@@ -1733,6 +1764,8 @@ function sanitize(o){
   r.plan.ing=Math.min(num(r.plan.ing,3),40);
   r.plan.ifw=typeof r.plan.ifw==='string'?r.plan.ifw.slice(0,100):'';
   r.plan.ifd=typeof r.plan.ifd==='string'?r.plan.ifd.slice(0,100):'';
+  if(!r.zf||typeof r.zf!=='object'||Array.isArray(r.zf))r.zf={};
+  r.zf={every:[-1,0,15,30,45,60].indexOf(r.zf.every)>=0?r.zf.every:30,intro:!!r.zf.intro};
   Object.keys(r.st).forEach(k=>{if(!ITEMS[k]||['learning','done','skip'].indexOf(r.st[k])<0)delete r.st[k];});
   Object.keys(r.rv).forEach(k=>{const v=r.rv[k];if(!ITEMS[k]||!v||!isYmd(v.d)||typeof v.s!=='number')delete r.rv[k];});
   Object.keys(r.qz).forEach(k=>{
@@ -1860,7 +1893,7 @@ function setStatus(id,s){
   if(it.kind==='g'&&s==='skip')s='';
   const prev=st(id);
   if(prev===s)return;
-  const wasComplete=lvStat(it.l).complete;
+  const wasComplete=lvStat(it.l).complete,modWas=modStat(it.m).pct===100;
   if(s)S.st[id]=s;else delete S.st[id];
   if(s==='done'){
     S.at[id]=today();bump('i');
@@ -1878,6 +1911,7 @@ function setStatus(id,s){
   }else if(s==='learning'){msg='En progreso: «'+it.title+'».';}
   MSG.hoy=msg;
   persist();renderAll();
+  if(s==='done')zEvent('done',{it:it,lv:!wasComplete&&lvStat(it.l).complete,mod:!modWas&&modStat(it.m).pct===100});
 }
 function toggleActive(id){
   const i=S.active.indexOf(id);
@@ -2193,11 +2227,13 @@ function exFinish(){
   const key=EX.key,l=LV[key],it=ITEMS[key+'-x0'];
   const tot=EX.ans.length,ok=EX.ans.filter(a=>a.ok).length;
   const q=S.qz[key]||(S.qz[key]={b:0,l:0,n:0,d:'',h:[],w:[]});
+  let pb=0,pn=0;
   EX.ans.forEach(a=>{const k=q.w.indexOf(a.qi);if(a.ok){if(k>=0)q.w.splice(k,1);}else if(k<0)q.w.push(a.qi);});
   EX.ok=ok;EX.total=tot;EX.score=EX.mode==='full'?Math.round(ok/tot*QN):ok;
   let msg='';
   if(EX.mode==='full'){
     const was=lvStat(l).complete;
+    pb=q.b;pn=q.n;
     q.n++;q.l=EX.score;q.d=today();q.b=Math.max(q.b,EX.score);
     q.h.push([today(),EX.score]);if(q.h.length>8)q.h=q.h.slice(-8);
     bump('i');
@@ -2212,6 +2248,7 @@ function exFinish(){
   }
   EX.done=true;MSG.hoy=msg;
   persist();renderAll();exView('#ex-res',true);
+  zEvent('exam',{full:EX.mode==='full',pass:EX.mode==='full'&&EX.score>=PASS,score:EX.score,pb:pb,pn:pn,ok:EX.ok,total:EX.total});
 }
 function exQuit(){
   const key=EX?EX.key:null;
@@ -2319,6 +2356,7 @@ function closeDrawer(){
   $$('.shell,.bar').forEach(e=>{e.inert=false;});
   const el=lastSel?$(lastSel):null;
   if(el)el.focus({preventScroll:true});
+  zFlush();
 }
 function renderDrawer(){
   if(!DR)return;
@@ -2382,6 +2420,7 @@ function startTimer(){
   T.end=Date.now()+T.left*1000;T.run=true;
   T.iv=setInterval(tick,250);
   $('#t-start').textContent='Pausar';
+  zEvent('block-start');
   const m=BY[S.active[0]],it=m?nextItem(m):null;
   $('#t-msg').textContent=it?'Ahora solo esto: '+it.title:'Un bloque, una sola cosa.';
   tick();
@@ -2390,6 +2429,7 @@ function resetTimer(){timerIdle();$('#t-msg').textContent='';}
 function finishTimer(){
   timerIdle();bump('b');persist();renderQuincena();
   $('#t-msg').textContent='Bloque terminado. Descansa 5 minutos, camina o toma agua, y anota qué avanzaste.';
+  zEvent('block-end');
 }
 
 /* ---------- render global ---------- */
@@ -2478,14 +2518,365 @@ function route(){
 }
 window.addEventListener('hashchange',route);
 
+/* ---------- Zafiro: tarjetas de ánimo ---------- */
+const ZEV=[-1,0,15,30,45,60];
+const ZOPT=[['15','Cada 15 min'],['30','Cada 30 min'],['45','Cada 45 min'],['60','Cada hora'],['0','Solo cuando avance'],['-1','Silencio (solo si me pulsas)']];
+const ZM={
+  intro:["Soy Zafiro. Aparezco de vez en cuando con una frase corta para empujarte. Tú decides cada cuánto: abre «Frecuencia»."],
+  avance_t:[
+    "Tema cerrado: «{title}». Mañana te lo pregunto en Repaso.",
+    "Otro paso real. Márcalo solo si puedes explicarlo sin mirar: eso es lo que cuenta.",
+    "Así se avanza: de a un paso, sin ruido y sin pedir permiso.",
+    "Hecho. Eso fue constancia, no suerte.",
+    "{pct} % de la ruta. Cada punto lo pusiste tú.",
+    "Un tema menos. No tienes que sentirte listo para el siguiente: solo empezarlo.",
+    "Repetir lo pequeño hasta que se vuelve normal: así cambia una persona.",
+    "Bien. Respira, toma agua y decide: ¿otro paso o descanso?"
+  ],
+  avance_p:[
+    "Práctica hecha. Hacer vale más que ver: esto sí te cambia.",
+    "Funcionó y lo hiciste tú. Anota qué aprendiste: es material de portafolio, sin datos de ninguna empresa.",
+    "Lo hiciste con tus manos, no mirando a otro. Esa diferencia lo es todo.",
+    "Un laboratorio más. Equivocarte aquí no cuesta nada; aprender, mucho.",
+    "Práctica cerrada. Si puedes repetirla sin mirar, ya es tuya."
+  ],
+  avance_g:[
+    "Puerta de salida superada. Esto se demuestra, no se memoriza.",
+    "Lo hiciste sin mirar. Eso es dominio.",
+    "Una puerta menos entre tú y el siguiente nivel.",
+    "Esto te diferencia: no solo lo viste, lo puedes mostrar."
+  ],
+  nivel:[
+    "Nivel {lv} de {mod} cerrado. Hace unas semanas esto era una lista; hoy es tuyo.",
+    "¡Nivel cerrado! Date un respiro y celébralo: te lo ganaste.",
+    "Nivel {lv} completo. Mira cuánto ya sabes hacer sin que nadie te lo muestre.",
+    "Cerraste un nivel entero. Eso no lo hace quien solo tiene ganas."
+  ],
+  modulo:[
+    "Módulo completo: {mod}. Elige el siguiente con calma: aquí no hay prisa, hay rumbo.",
+    "Terminaste {mod}. Esto ya es una habilidad real, no una intención."
+  ],
+  exam_ok:[
+    "{score}/10. Aprobado. Eso sale de repasar, no de suerte.",
+    "Aprobaste con {score}. Ahora sabes cómo se siente dominar un nivel.",
+    "Examen superado ({score}/10). Aun así, mira las falladas: ahí está lo que falta pulir.",
+    "Aprobado. Tu constancia da resultados que se pueden medir."
+  ],
+  exam_mejora:[
+    "Subiste de {prev} a {score}. Así se ve progresar.",
+    "{score}/10, mejor que tu {prev} anterior. Eso es repetición bien hecha."
+  ],
+  exam_cerca:[
+    "Casi: {score}/10. Un repaso corto de las falladas y lo pasas.",
+    "{score}/10. Te faltan {falta} para aprobar. Repasa las falladas con calma."
+  ],
+  exam_mal:[
+    "{score}/10: todavía no, y no pasa nada. Ya sabes qué repasar.",
+    "Fallar un examen es información, no una sentencia. Repasa lo fallado y vuelve en unos días.",
+    "Esta nota no mide lo que vales; mide lo que aún no repasas.",
+    "Así se aprende: fallar primero, corregir después. Mira las falladas."
+  ],
+  exam_practica:[
+    "Práctica de falladas: {ok} de {total}. Cada una que corriges deja de ser punto débil.",
+    "Corregir lo que fallaste es la mejor forma de estudiar. Bien hecho."
+  ],
+  bloque_ini:[
+    "25 minutos. Solo esto.",
+    "Celular lejos. Una sola cosa.",
+    "Empieza imperfecto; lo importante es empezar.",
+    "Estos 25 minutos son tuyos. Nadie más entra."
+  ],
+  bloque_fin:[
+    "Bloque cerrado. Camina, toma agua y descansa 5 minutos.",
+    "Eso cuenta, aunque no hayas terminado el tema.",
+    "25 minutos de enfoque. Cumpliste lo que te prometiste.",
+    "Bien hecho. Anota en una línea qué avanzaste."
+  ],
+  regreso:[
+    "Volviste. Eso es lo que importa. Hoy basta con 5 minutos.",
+    "{d} días fuera, sin culpa. Un paso pequeño y retomas el ritmo.",
+    "Parar unos días no borra lo avanzado. Retoma por el siguiente paso.",
+    "Lo difícil no es no fallar un día: es volver. Ya volviste."
+  ],
+  racha:[
+    "Llevas {streak} días seguidos con avance. Hoy sería el {next}.",
+    "{streak} días de constancia. La disciplina es esto: repetir sin drama.",
+    "Racha de {streak}. Si hoy está difícil, hazla con 5 minutos."
+  ],
+  manana:[
+    "Buenos días. Un bloque antes de que el día se lo coma todo.",
+    "Buen día. Empieza por lo más pequeño y deja que arranque solo."
+  ],
+  tarde:[
+    "Buenas tardes. ¿Un bloque de 25 minutos antes de que acabe el día?",
+    "Buenas tardes. Un paso hoy y la tarde ya valió."
+  ],
+  noche:[
+    "Buenas noches. Si hoy no hubo bloque, hay 5 minutos. Si ya lo hiciste, descansa.",
+    "Cierra con un paso pequeño y a dormir: dormir bien ayuda a fijar lo que estudiaste."
+  ],
+  madrugada:[
+    "Es muy tarde. Dormir también es parte del plan: mañana rindes más.",
+    "Si ya hiciste tu paso, cierra y descansa. La ruta sigue mañana."
+  ],
+  plan:[
+    "Tu disparador: si {w}, entonces {do}. Hoy es buen día para cumplirlo.",
+    "Recuerda tu plan: si {w}, entonces {do}. Sin negociar contigo mismo."
+  ],
+  plan_vacio:[
+    "Define tu disparador en Hoy: un momento fijo y una acción pequeña. Así no dependes de las ganas."
+  ],
+  dato:[
+    "Dato: en un estudio de UCL, formar un hábito tomó 66 días en promedio (con conductas simples). Un día perdido no lo arruinó.",
+    "Dato: los planes «si pasa X, hago Y» tuvieron un efecto medio-grande (d = 0,65) en un meta-análisis de 94 pruebas. Por eso existe tu disparador."
+  ],
+  periodica:[
+    "Nadie va a construir esto por ti. Mejor: así queda 100 % tuyo.",
+    "Si nadie confía en ti todavía, no pidas permiso: dale pruebas. Un paso hoy es una prueba.",
+    "La confianza no se siente primero; se fabrica con promesas pequeñas que cumples.",
+    "Cada error que corriges es información que antes no tenías.",
+    "No hace falta sentirte listo. Hace falta el primer minuto.",
+    "Hoy, 5 % más que ayer: un ejercicio extra, no una noche sin dormir.",
+    "Un hombre de palabra empieza cumpliéndose a sí mismo.",
+    "No esperes a que te lo muestren: llega con el análisis hecho. Eso se entrena.",
+    "Quien sabe hacerlo no necesita que se lo digan. Cada paso de esta ruta es eso.",
+    "La disciplina no son ganas: es un horario que respetas aunque no haya ganas.",
+    "Los días sin ganas también cuentan. Haz el mínimo y sigue.",
+    "Mejor 25 minutos hoy que tres horas «algún día».",
+    "Perder un día no te cuesta el hábito. Rendirte sí. Vuelve hoy.",
+    "No compares tu capítulo 3 con el capítulo 20 de otra persona.",
+    "Sé el profesional que llega con la solución, no solo con el problema.",
+    "Tu yo de dentro de seis meses depende de este bloque.",
+    "Hazlo pequeño, hazlo imperfecto, pero hazlo. Lo corriges después.",
+    "Lo difícil se vuelve ordinario con repeticiones. Esta es una.",
+    "No tienes que ser el mejor del equipo. Tienes que ser mejor que ayer.",
+    "Respira. Un tema a la vez. Esto se termina por partes.",
+    "Cuando dudes de ti, mira lo que ya marcaste. Eso es evidencia.",
+    "Un mal día de estudio no mide lo que vales.",
+    "Descansar también es parte del plan: agua, caminar, dormir.",
+    "Pedir ayuda a tiempo también es saber hacer el trabajo.",
+    "Decidir se aprende decidiendo: decisiones pequeñas, rápidas y revisables.",
+    "Ante la duda, elige la opción que te acerca a hacerlo tú.",
+    "El miedo a equivocarte se achica cada vez que fallas en un laboratorio y no pasa nada.",
+    "No necesitas motivación para empezar. Necesitas el primer minuto; las ganas suelen llegar después.",
+    "La fuerza de verdad se nota en lo que repites cuando nadie mira.",
+    "Un hombre responsable no espera a que se lo digan: ve el problema, prepara el caso y lo resuelve.",
+    "Si algo te dolió hoy, úsalo: prepara el caso, trae datos y vuelve.",
+    "Ser fuerte no es no sentir miedo: es dar el paso con miedo.",
+    "Tienes una ruta escrita y 25 minutos. Eso ya es ventaja.",
+    "No hay atajo, pero sí hay camino. Estás en él.",
+    "Cumple hoy lo que prometiste ayer. Así se construye el respeto propio."
+  ]
+};
+const ZMOOD={intro:'happy',avance_t:'happy',avance_p:'happy',avance_g:'strong',nivel:'happy',modulo:'happy',exam_ok:'happy',exam_mejora:'happy',exam_cerca:'strong',exam_mal:'strong',exam_practica:'calm',bloque_ini:'strong',bloque_fin:'happy',regreso:'calm',racha:'happy',manana:'happy',tarde:'calm',noche:'calm',madrugada:'calm',plan:'strong',plan_vacio:'calm',dato:'calm'};
+const Z={el:null,fab:null,recent:[],last:Date.now(),lastEv:0,hideT:0,manual:false,hover:false,ctx:null,pending:null,iv:0};
+
+function zSvg(mood){
+  const ink='stroke="var(--zf-ink)" stroke-width="2.2" stroke-linecap="round"';
+  let eyes;
+  if(mood==='happy')eyes='<path d="M15.5 23.5q3-5 6 0M26.5 23.5q3-5 6 0" fill="none" '+ink+'/>';
+  else{
+    eyes='<g class="zf-eyes"><circle cx="18.5" cy="23" r="2.6" fill="var(--zf-ink)"/><circle cx="29.5" cy="23" r="2.6" fill="var(--zf-ink)"/></g>';
+    if(mood==='strong')eyes+='<path d="M15 17.6l6 1.7M33 17.6l-6 1.7" fill="none" '+ink+'/>';
+  }
+  const mouth=mood==='happy'?'M19 28.5q5 5 10 0':(mood==='strong'?'M20 29.5q4 2 8 0':'M20.5 29.5h7');
+  return '<svg viewBox="0 0 48 48" focusable="false" aria-hidden="true">'+
+    '<path d="M24 11V6.5" fill="none" stroke="var(--zf-dark)" stroke-width="2.4" stroke-linecap="round"/>'+
+    '<circle class="zf-ant" cx="24" cy="4.6" r="2.8" fill="var(--accent)" stroke="var(--zf-dark)" stroke-width="1.2"/>'+
+    '<rect x="2.5" y="20" width="4.5" height="11" rx="2.2" fill="var(--zf-dark)"/><rect x="41" y="20" width="4.5" height="11" rx="2.2" fill="var(--zf-dark)"/>'+
+    '<rect x="6.5" y="10.5" width="35" height="29" rx="10" fill="var(--zf)"/>'+
+    '<rect x="10.5" y="14.5" width="27" height="20" rx="7" fill="var(--zf-face)"/>'+
+    eyes+'<path d="'+mouth+'" fill="none" '+ink+'/>'+
+    '<rect x="15" y="40.5" width="18" height="5" rx="2.5" fill="var(--zf-dark)"/></svg>';
+}
+
+function zInit(){
+  if(Z.el)return;
+  const card=document.createElement('section');
+  card.className='zf';card.id='zf';card.hidden=true;
+  card.setAttribute('role','status');card.setAttribute('aria-live','polite');card.setAttribute('aria-atomic','true');card.setAttribute('aria-label','Zafiro');
+  card.innerHTML='<div class="zf-av" id="zf-av" aria-hidden="true"></div>'+
+    '<div class="zf-body"><p class="zf-who">Zafiro</p><p class="zf-msg" id="zf-msg"></p>'+
+    '<div class="zf-act" id="zf-act" hidden></div>'+
+    '<div class="zf-acts"><button type="button" class="tlink" id="zf-other">Otra</button><button type="button" class="tlink" id="zf-cfg" aria-expanded="false" aria-controls="zf-set">Frecuencia</button></div>'+
+    '<div class="zf-set" id="zf-set" hidden><label for="zf-sel">Cada cuánto aparezco</label><select id="zf-sel">'+
+    ZOPT.map(o=>'<option value="'+o[0]+'">'+o[1]+'</option>').join('')+'</select></div></div>'+
+    '<button type="button" class="zf-x" id="zf-x" aria-label="Cerrar a Zafiro">×</button>';
+  const fab=document.createElement('button');
+  fab.type='button';fab.className='zf-fab';fab.id='zf-fab';
+  fab.setAttribute('aria-label','Zafiro: pedir una frase de ánimo');fab.title='Zafiro';
+  fab.innerHTML=zSvg('calm');
+  document.body.appendChild(card);document.body.appendChild(fab);
+  Z.el=card;Z.fab=fab;
+  $('#zf-sel').value=String(S.zf.every);
+  fab.addEventListener('click',()=>{
+    if(!card.hidden&&Z.manual){zHide();return;}
+    zShow(zWeighted(),zCtx(),{manual:true});
+  });
+  $('#zf-x').addEventListener('click',zHide);
+  $('#zf-other').addEventListener('click',()=>{
+    const c=Z.ctx||{pool:'periodica',c:zCtx()};
+    zShow(c.pool,c.c,{manual:true,cfg:!$('#zf-set').hidden});
+  });
+  $('#zf-cfg').addEventListener('click',()=>{
+    const set=$('#zf-set'),open=set.hidden;
+    set.hidden=!open;$('#zf-cfg').setAttribute('aria-expanded',open?'true':'false');
+    if(open){Z.manual=true;clearTimeout(Z.hideT);$('#zf-sel').value=String(S.zf.every);}
+  });
+  $('#zf-sel').addEventListener('change',()=>{
+    const v=parseInt($('#zf-sel').value,10);
+    if(ZEV.indexOf(v)<0)return;
+    S.zf.every=v;persist();
+    const t=v>0?'Listo: aparezco cada '+(v===60?'hora':v+' min')+' mientras estés aquí, sin interrumpir tus bloques de enfoque.':(v===0?'Listo: solo aparezco cuando avances.':'Listo: me callo. Pulsa mi ícono cuando quieras ánimo.');
+    zShow('',null,{manual:true,cfg:true,text:t,mood:'happy'});
+  });
+  card.addEventListener('mouseenter',()=>{Z.hover=true;clearTimeout(Z.hideT);});
+  card.addEventListener('mouseleave',()=>{Z.hover=false;if(!Z.manual&&!card.hidden)Z.hideT=setTimeout(zHide,4000);});
+  card.addEventListener('focusin',()=>{clearTimeout(Z.hideT);});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!card.hidden&&!DR)zHide();});
+  Z.iv=setInterval(zTick,30000);
+}
+
+function zCtx(){
+  const tot=totalStat();
+  return {pct:tot.pct,fin:tot.fin,n:tot.n,streak:streak(),next:streak()+1,w:S.plan.ifw||'',do:S.plan.ifd||''};
+}
+function zPlanSet(){return !!((S.plan.ifw||'').trim()&&(S.plan.ifd||'').trim());}
+function zWeighted(){
+  const r=Math.random();
+  if(zPlanSet()&&r<0.15)return 'plan';
+  if(r<0.25)return 'dato';
+  return 'periodica';
+}
+function zPick(pool,c){
+  const arr=ZM[pool];if(!arr||!arr.length)return '';
+  let cand=arr.filter(t=>Z.recent.indexOf(t)<0);
+  if(!cand.length)cand=arr;
+  const t=cand[Math.floor(Math.random()*cand.length)];
+  Z.recent.push(t);if(Z.recent.length>14)Z.recent.shift();
+  return t.replace(/\{(\w+)\}/g,(m,k)=>(c&&c[k]!==undefined&&c[k]!==null)?c[k]:'');
+}
+function zHide(){
+  if(!Z.el)return;
+  Z.el.hidden=true;Z.manual=false;clearTimeout(Z.hideT);
+  $('#zf-set').hidden=true;$('#zf-cfg').setAttribute('aria-expanded','false');
+}
+function zArm(len){
+  clearTimeout(Z.hideT);
+  if(Z.manual||Z.hover||!$('#zf-set').hidden)return;
+  Z.hideT=setTimeout(zHide,Math.min(15000,Math.max(7000,len*75)));
+}
+function zShow(pool,c,o){
+  o=o||{};
+  if(!Z.el)return;
+  if(!o.manual){
+    if(S.zf.every<0)return;
+    if(EX&&!EX.done)return;
+    if(DR){Z.pending=[pool,c,o];return;}
+    if(o.ev&&Date.now()-Z.lastEv<30000)return;
+  }
+  const txt=o.text||zPick(pool,c);
+  if(!txt)return;
+  Z.ctx={pool:pool||'periodica',c:c||zCtx()};
+  Z.last=Date.now();
+  if(o.ev)Z.lastEv=Date.now();
+  const mood=o.mood||ZMOOD[pool]||['calm','happy','strong'][Math.floor(Math.random()*3)];
+  $('#zf-av').innerHTML=zSvg(mood);
+  const act=$('#zf-act');act.innerHTML='';
+  if(o.act){
+    const b=document.createElement('button');
+    b.type='button';b.className='btn sm';b.textContent=o.act.label;
+    b.addEventListener('click',()=>{zHide();o.act.fn();});
+    act.appendChild(b);
+  }
+  act.hidden=!o.act;
+  Z.manual=!!(o.manual||o.keep||o.cfg);
+  $('#zf-set').hidden=!o.cfg;
+  $('#zf-cfg').setAttribute('aria-expanded',o.cfg?'true':'false');
+  if(o.cfg)$('#zf-sel').value=String(S.zf.every);
+  Z.el.hidden=false;
+  Z.el.classList.remove('in');void Z.el.offsetWidth;Z.el.classList.add('in');
+  const m=$('#zf-msg');m.textContent='';
+  setTimeout(()=>{m.textContent=txt;},40);
+  zArm(txt.length);
+}
+function zFlush(){
+  if(!Z.pending||DR)return;
+  const p=Z.pending;Z.pending=null;
+  setTimeout(()=>zShow(p[0],p[1],p[2]),350);
+}
+function zEvent(type,c){
+  c=c||{};
+  const base=zCtx();
+  if(type==='done'){
+    const it=c.it;
+    let pool=it.kind==='g'?'avance_g':(it.kind==='p'?'avance_p':'avance_t'),pri=1;
+    if(c.mod){pool='modulo';pri=2;}else if(c.lv){pool='nivel';pri=2;}
+    return zShow(pool,Object.assign(base,{title:it.title,lv:it.l.n,mod:it.m.name}),{pri:pri,ev:pri<2});
+  }
+  if(type==='exam'){
+    let pool;
+    if(!c.full)pool='exam_practica';
+    else if(c.pass)pool='exam_ok';
+    else if(c.pn>0&&c.score>c.pb)pool='exam_mejora';
+    else if(PASS-c.score<=2)pool='exam_cerca';
+    else pool='exam_mal';
+    return zShow(pool,Object.assign(base,{score:c.score,prev:c.pb,falta:PASS-c.score,ok:c.ok,total:c.total}),{pri:2});
+  }
+  if(type==='block-start')return zShow('bloque_ini',base,{pri:2});
+  if(type==='block-end')return zShow('bloque_fin',base,{pri:2});
+}
+function zTick(){
+  const e=S.zf.every;
+  if(!(e>0)||!Z.el)return;
+  if(document.visibilityState!=='visible')return;
+  if(Date.now()-Z.last<e*60000)return;
+  if(T.run||DR||(EX&&!EX.done))return;
+  const a=document.activeElement;
+  if(a&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName))return;
+  zShow(zWeighted(),zCtx(),{});
+}
+function zBoot(){
+  if(!Z.el||Z.booted)return;
+  Z.booted=true;
+  setTimeout(()=>{
+    if(!S.zf.intro){
+      S.zf.intro=true;persist();
+      return zShow('intro',zCtx(),{manual:true,cfg:true,pri:2});
+    }
+    if(S.zf.every<0)return;
+    const t=today(),on=x=>S.days[x]&&((S.days[x].b||0)+(S.days[x].i||0))>0;
+    const days=Object.keys(S.days).filter(x=>x<t&&on(x)).sort();
+    const doneToday=!!on(t),c=zCtx();
+    if(!doneToday&&days.length){
+      c.d=diff(days[days.length-1],t);
+      if(c.d>=3)return zShow('regreso',c,{pri:2});
+    }
+    if(!doneToday&&c.streak>=2)return zShow('racha',c,{pri:2});
+    if(!doneToday&&zPlanSet())return zShow('plan',c,{pri:2});
+    if(!zPlanSet()){
+      let seen='';try{seen=localStorage.getItem('ruta2080:zfnag')||'';}catch(e){}
+      if(seen!==t){
+        try{localStorage.setItem('ruta2080:zfnag',t);}catch(e){}
+        return zShow('plan_vacio',c,{pri:2,act:{label:'Ir a mi disparador',fn:()=>{const e=$('#card-hoy');if(e)e.scrollIntoView({behavior:RM?'auto':'smooth',block:'start'});const i=$('#if-when');if(i)i.focus({preventScroll:true});}}});
+      }
+    }
+    const h=new Date().getHours();
+    const pool=h<5?'madrugada':(h<12?'manana':(h<19?'tarde':'noche'));
+    zShow(pool,c,{pri:2});
+  },1200);
+}
+
+
 /* ---------- arranque ---------- */
 $('#map').insertAdjacentHTML('beforebegin',legHTML());
 $('#rev-form').insertAdjacentHTML('beforeend','<p class="note" id="rev-msg" role="status"></p>');
 saveLocal();
+zInit();
 applyInputs();
 renderAll();
 try{route();}catch(e){}
-initCloud();
+initCloud().then(zBoot,zBoot);
 })();
 
 </script>
