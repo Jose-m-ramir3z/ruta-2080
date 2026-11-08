@@ -9,6 +9,7 @@ Roadmap personal de TI, publicado como una sola página estática (`index.html`,
 - 7 módulos: Cloud, Infraestructura, Ciberseguridad, Soporte técnico, Inglés, Bases de datos y Desarrollo de software.
 - 24 niveles, cada uno con temas, prácticas, puertas de salida y un examen de selección múltiple (nota sobre 10, mínimo 7).
 - Cada módulo empieza por el 20 % que destraba el resto y sube hasta especialista.
+- Lecciones explicadas dentro de la página (Cloud N1 y N2 en Azure, Infraestructura N1, Ciberseguridad N1) y una ruta opcional de 8 semanas para la certificación LPI Linux Essentials, dentro de Ciberseguridad.
 - Repaso espaciado (1, 3, 7, 14 y 30 días) y revisión quincenal.
 
 ## Notas
