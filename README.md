@@ -9,7 +9,7 @@ Roadmap personal de TI, publicado como una sola página estática (`index.html`,
 - 7 módulos: Cloud, Infraestructura, Ciberseguridad, Soporte técnico, Inglés, Bases de datos y Desarrollo de software.
 - 24 niveles, cada uno con temas, prácticas, puertas de salida y un examen de selección múltiple (nota sobre 10, mínimo 7).
 - Cada módulo empieza por el 20 % que destraba el resto y sube hasta especialista.
-- Curso con 101 lecciones explicadas dentro de la página, con ejemplos, errores comunes, práctica y autocomprobación: Cloud N1 y N2 (Azure), Infraestructura N1 y N2 (parte de Linux), Ciberseguridad N1 y N2 (parte), ISO/IEC 27001 en N3, Soporte N1, Inglés N1, Bases de datos N1 y Desarrollo N1. Los niveles N2 a N4 restantes tienen temas, prácticas y examen, pero aún no lección completa.
+- Curso con 107 lecciones explicadas dentro de la página, con ejemplos, errores comunes, práctica y autocomprobación: Cloud N1 y N2 (Azure), Infraestructura N1 y N2 (parte de Linux), Ciberseguridad N1 y N2 (parte), ISO/IEC 27001 en N3, Soporte N1, Inglés N1, Bases de datos N1 y Desarrollo N1. Los niveles N2 a N4 restantes tienen temas, prácticas y examen, pero aún no lección completa.
 - Sección «Empieza aquí» con el orden de estudio y una ruta opcional de 8 semanas (unas 50 horas) para la certificación LPI Linux Essentials (examen 010, 40 preguntas, 60 minutos), dentro de Ciberseguridad. Confirma precio y fechas en lpi.org.
 - Repaso espaciado (1, 3, 7, 14 y 30 días) y revisión quincenal.
 
